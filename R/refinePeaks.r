@@ -143,6 +143,8 @@ refinePeaks <- function(coverage,gcbias,bdwidth,peaks,flank=NULL,
     rm(gc,gcwbase0)
     ### reads count
     regionrcsp <- split(regionsrc,seqnames(regionsrc))
+    regionorder <- stringr::str_order(names(regionrcsp))
+    regionrcsp <- regionrcsp[regionorder]
     rcfwd <- RleList(unlist(viewApply(Views(coverage$fwd,ranges(regionrcsp)),
                  runsum,k=pdwh)))
     rcrev <- RleList(unlist(viewApply(Views(coverage$rev,ranges(regionrcsp)),
